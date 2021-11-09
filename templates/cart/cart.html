@@ -4,10 +4,12 @@
   <div class="container">
     <!-- ============================ COMPONENT 1 ================================= -->
 
-    {% if not cart_items %} 
+    {% if not cart_items %}
     <div class="text-center">
       <h2 class="text-primary">Your Cart is Empty</h2>
-      <a href="{% url 'store' %}" class="btn btn-primary font-weight-bold">Continue shopping</a>
+      <a href="{% url 'store' %}" class="btn btn-primary font-weight-bold"
+        >Continue shopping</a
+      >
     </div>
     {% else %}
     <div class="row">
@@ -39,8 +41,15 @@
                         >{{ cart_item.poduct.name }}</a
                       >
                       <p class="text-muted small">
-                        Size: 25 Mpx <br />
-                        Color: Canon
+                        Size:
+                        <span class="text-weight-bold"
+                          >{{ cart_item.product_size }}</span
+                        >
+                        <br />
+                        Color:
+                        <span class="text-weight-bold"
+                          >{{ cart_item.product_color }}</span
+                        >
                       </p>
                     </figcaption>
                   </figure>
@@ -51,7 +60,7 @@
                     <div class="input-group input-spinner">
                       <div class="input-group-prepend">
                         <a
-                          href="{% url 'remove_product_from_cart_item' cart_item.product.id %}"
+                          href="{% url 'remove_product_from_cart_item' cart_item.product.id %}?color={{cart_item.product_color}}&size={{cart_item.product_size}}"
                           class="btn btn-light"
                           type="button"
                           id="button-minus"
@@ -66,7 +75,7 @@
                       />
                       <div class="input-group-append">
                         <a
-                          href="{% url 'add_to_cart' cart_item.product.id %}"
+                          href="{% url 'add_to_cart' cart_item.product.id %}?color={{cart_item.product_color}}&size={{cart_item.product_size}}"
                           class="btn btn-light"
                           type="button"
                           id="button-plus"
@@ -90,7 +99,7 @@
                 </td>
                 <td class="text-right">
                   <a
-                    href="{% url 'remove_from_cart' cart_item.product.id %}"
+                    href="{% url 'remove_from_cart' cart_item.product.id %}?color={{cart_item.product_color}}&size={{cart_item.product_size}}"
                     class="btn btn-danger"
                     >Remove</a
                   >
